@@ -13,7 +13,7 @@ class markov_model:
 			else:
 				upd = {obj: count +1}
 			self.last_object.next.update(upd)
-		elif(len(self.objects != 0)):
+		elif(len(self.objects) != 0):
 			upd = {obj: 1}
 			self.last_object.next.update(upd)
 			self.objects.append(obj)
@@ -46,10 +46,23 @@ class markov_model_api:
 		self.model = markov_model()
 		self.model._init_()
 		
-	def add(self):
+	def add(self, data):
+		obj = object()
+		for i in range (0, len(self.model.objects)):
+			if(data == self.model.objects[i].data):
+				self.model.add(self.model.objects[i])
+				return
+		obj._init_(data)
+		self.model.add(obj)
 		
-	def put_start(self):
-		
+	def put_start(self, start):
+		for i in range(0, len(self.model.objects)):
+			if start == self.model.objects[i].data:
+				start = self.model.objects[i]
+				return self.model.set_start_generate(start)
+				
 	def get(self):
+		return self.model.generate_next_object()
+		
 		
 	
