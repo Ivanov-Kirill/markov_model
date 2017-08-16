@@ -17,5 +17,14 @@ class object:
 		self.next = dict()
 		
 class markov_model_api:
-	
+	def _init_(self):
+		self.model = markov_model()
+		self.model._init_()
+		
+	def add(self):
+		
+	def put_start(self):
+		
+	def get(self):
+		
 	
